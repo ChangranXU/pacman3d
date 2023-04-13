@@ -43,7 +43,7 @@ export default function SignUp() {
         email,
         password,
       });
-      if (res.data.isAdded ) {
+      if (res.data.isCreated) {
         toast.success('User created!', {
           position: "top-center",
           autoClose: 400,
