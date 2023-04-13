@@ -1,5 +1,5 @@
 import { List, Avatar } from '@arco-design/web-react';
-import { IconHeart, IconUser, IconStar } from '@arco-design/web-react/icon';
+import { IconHeart, IconUser, IconStar, IconHeartFill } from '@arco-design/web-react/icon';
 import './Blog.css'
 import { AuthContext } from "../component/AuthContext";
 import React, { Component, useState, useEffect,useContext } from "react";
@@ -23,14 +23,14 @@ const App = () => {
   const names = [];
   const author=[];
   const description=[];
-  const heart=[];
+  //const heart=[];
   const id=[];
 
   for (var i = 0; i < blogList.length; i++) {
     names.push(blogList[i].title);
     author.push(blogList[i].creatorId);
     description.push(blogList[i].content);
-    heart.push(blogList[i].numberOfLikes);
+    //heart.push(blogList[i].numberOfLikes);
     id.push(blogList[i]._id);
   }
   
@@ -40,7 +40,7 @@ const App = () => {
       title: names[index % names.length],
       author: author[index % author.length],
       description: description[index % description.length],
-      heart: heart[index % heart.length],
+      //heart: heart[index % heart.length],
       id: id[index % id.length],
     };
   });
@@ -52,7 +52,7 @@ const App = () => {
       const res = await axios.post(url, { blog_id, });
       console.log(res.data);
       if (res.data.isLiked ) {
-        console.success('Success！');
+        Message.success('Successfully liked！');
       } else{
         Message.error('Failed！');
       }
@@ -76,7 +76,7 @@ const App = () => {
       }
       wrapperStyle={{ maxWidth: 1314 }}
       bordered={false}
-      pagination={{ pageSize: 4 }}
+      pagination={{ pageSize: 5 }}
       dataSource={dataSource}
       render={(item, index) => (
         <List.Item
@@ -84,10 +84,6 @@ const App = () => {
           style={{ padding: '20px 0', borderBottom: '1px solid var(--color-fill-3)' }}
           actionLayout='vertical'
           actions={[
-            <span key={1}>
-              <IconHeart onClick={()=>{addlike(item.id); }}/>
-              {item.heart}
-            </span>,
           ]}
         >
           <List.Item.Meta
